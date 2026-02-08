@@ -1,4 +1,4 @@
-🚀 Smart Study Assistant
+🚀 Veyransh
 
 An Academic Productivity Platform built using Flask, Machine Learning, and OCR.
 
