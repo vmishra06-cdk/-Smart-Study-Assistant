@@ -13,19 +13,16 @@ from tkinter import filedialog
 import pandas as pd
 from tkinter import messagebox
 
-# A dictionary to simulate a QR/proximity database
 MOCK_PROXIMITY_DB = {
     "C101": ["S001", "S002"],
     "C102": ["S003"],
 }
 
-# A dictionary to simulate a facial recognition database
 MOCK_FACE_DB = {
-    "S001": [np.zeros((10, 10), dtype=np.uint8)], # Placeholder for face embeddings
+    "S001": [np.zeros((10, 10), dtype=np.uint8)], 
     "S002": [np.zeros((10, 10), dtype=np.uint8)],
 }
 
-# Pre-populated data - This will be updated with CSV upload
 STUDENT_NAMES = {
     "S001": "Alice Johnson", "S002": "Bob Smith", "S003": "Charlie Brown",
     "S004": "Diana Prince", "S005": "Ethan Hunt", "S006": "Fiona Glenanne",
@@ -65,18 +62,15 @@ class App(customtkinter.CTk):
         self.students_textbox = None
         self.courses_textbox = None
 
-        # NEW: Main tab view for organizing the UI
         self.tab_view = customtkinter.CTkTabview(self, width=1160, height=860)
         self.tab_view.grid(row=0, column=0, padx=20, pady=20, sticky="nsew")
 
-        # Create tabs
         self.attendance_tab = self.tab_view.add("Attendance")
         self.schedule_tasks_tab = self.tab_view.add("Schedule & Tasks")
         self.performance_tab = self.tab_view.add("Performance")
         self.manage_data_tab = self.tab_view.add("Manage Data")
         self.about_tab = self.tab_view.add("About & Resources")
 
-        # Configure tab layouts
         self.attendance_tab.grid_columnconfigure(0, weight=1)
         self.attendance_tab.grid_rowconfigure(0, weight=1)
         self.schedule_tasks_tab.grid_columnconfigure((0, 1), weight=1)
@@ -88,9 +82,7 @@ class App(customtkinter.CTk):
         self.about_tab.grid_columnconfigure((0, 1), weight=1)
         self.about_tab.grid_rowconfigure(0, weight=1)
         
-        #
-        # --- Attendance Tab Content ---
-        #
+        
         self.attendance_frame = customtkinter.CTkFrame(self.attendance_tab)
         self.attendance_frame.grid(row=0, column=0, padx=10, pady=10, sticky="nsew")
         self.attendance_frame.grid_columnconfigure(0, weight=1)
@@ -113,9 +105,7 @@ class App(customtkinter.CTk):
         self.attendance_status_label.grid(row=5, column=0, padx=10, pady=10)
         self.attendance_frame.grid_rowconfigure(2, weight=1)
 
-        #
-        # --- Schedule & Tasks Tab Content ---
-        #
+        
         self.schedule_frame = customtkinter.CTkFrame(self.schedule_tasks_tab)
         self.schedule_frame.grid(row=0, column=0, padx=10, pady=10, sticky="nsew")
         self.schedule_frame.grid_columnconfigure(0, weight=1)
@@ -144,9 +134,6 @@ class App(customtkinter.CTk):
         self.tasks_display = customtkinter.CTkTextbox(self.tasks_frame, width=300, height=200)
         self.tasks_display.grid(row=3, column=0, padx=10, pady=10, sticky="nsew")
         
-        #
-        # --- Performance Tab Content ---
-        #
         self.performance_frame = customtkinter.CTkFrame(self.performance_tab)
         self.performance_frame.grid(row=0, column=0, padx=10, pady=10, sticky="nsew")
         self.performance_frame.grid_columnconfigure(0, weight=1)
@@ -174,10 +161,7 @@ class App(customtkinter.CTk):
 
         self.realtime_display = customtkinter.CTkTextbox(self.realtime_frame, width=300, height=200)
         self.realtime_display.grid(row=3, column=0, padx=10, pady=10, sticky="nsew")
-
-        #
-        # --- Manage Data Tab Content ---
-        #
+    
         self.manage_frame = customtkinter.CTkFrame(self.manage_data_tab)
         self.manage_frame.grid(row=0, column=0, padx=10, pady=10, sticky="nsew")
         self.manage_frame.grid_columnconfigure((0, 1), weight=1)
@@ -216,9 +200,8 @@ class App(customtkinter.CTk):
         self.courses_textbox.insert("1.0", "Courses:\n\n" + "\n".join([f"{k}: {v}" for k, v in COURSE_NAMES.items()]))
         self.courses_textbox.configure(state="disabled")
 
-        #
-        # --- About & Resources Tab Content ---
-        #
+        
+        
         self.about_frame = customtkinter.CTkFrame(self.about_tab)
         self.about_frame.grid(row=0, column=0, padx=10, pady=10, sticky="nsew")
         self.about_frame.grid_columnconfigure(0, weight=1)
