@@ -3,7 +3,6 @@ import datetime
 
 app = Flask(__name__)
 
-# Mock Databases (simulating a real database)
 ATTENDANCE_DB = {}
 SCHEDULE_DB = {
     "S001": [
@@ -29,7 +28,6 @@ GOALS_DB = {
     "S003": ["Contribute to an open-source project"]
 }
 
-# A simple route to confirm the server is running.
 @app.route('/')
 def hello():
     return "The Flask backend is running!"
